@@ -114,7 +114,7 @@ sub _convert_array {
                 $sahsch->[1]{max_len} = $i;
             }
         } else {
-            $sahsch-[1]{of} = _convert($jsonsch->{items});
+            $sahsch->[1]{of} = _convert($jsonsch->{items});
         }
     }
     # XXX uniqueItems
@@ -150,9 +150,9 @@ sub _convert_object {
                 # XXX schema dependencies
                 die "Schema dependencies is not yet supported";
             } else {
-                $sch->[1]{'req_dep_all&'} //= [];
+                $sahsch->[1]{'req_dep_all&'} //= [];
                 for my $d (@$v) {
-                    push @{ $sch->[1]{'req_dep_all&'} }, [$d, [$k]];
+                    push @{ $sahsch->[1]{'req_dep_all&'} }, [$d, [$k]];
                 }
             }
         }
@@ -193,8 +193,6 @@ sub _convert {
 
 sub convert_json_schema_to_sah {
     _convert(@_);
-
-    _convert($jsonsch);
 }
 
 1;
